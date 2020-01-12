@@ -7,14 +7,10 @@ public class AutoPrintApplication {
 	public static void main(String[] args) {
 //		Print print = new Print();
 //		String content = "Talison F. Costa";
-//		try {
-//			print.simpleDoc(content);
-//		} catch (PrintException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+//		print.scan();
 		
-//		String uri = "/Users/talisoncosta/Documents/fotonica/autoprint/docs";
+		
+//		String uri = "C:\\Users\\Wellyda\\Documents\\docs";
 		String uri = args[0];
 		WatcherDirectory watcherDirectory = new WatcherDirectory(uri);
 		

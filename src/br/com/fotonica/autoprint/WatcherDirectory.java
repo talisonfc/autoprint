@@ -27,7 +27,7 @@ public class WatcherDirectory {
 
 		WatchKey key = null;
 
-		System.out.println(String.format("AutoPrint watching %s", uri));
+		System.out.println("AutoPrint watching " + uri);
 		while ((key = watchService.take()) != null) {
 			System.err.println("change");
 			for (WatchEvent<?> event : key.pollEvents()) {
