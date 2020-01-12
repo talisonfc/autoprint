@@ -1,5 +1,6 @@
 package br.com.fotonica.autoprint;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AutoPrintApplication {
@@ -10,7 +11,7 @@ public class AutoPrintApplication {
 //		print.scan();
 		
 		String uri = null;
-		String defaultUri = "C:\\Users\\Wellyda\\Documents\\docs";
+		String defaultUri = new File("").getAbsolutePath();;
 		
 		if(args != null && args.length > 0) uri = args[0];
 		else uri = defaultUri;
