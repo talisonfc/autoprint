@@ -29,10 +29,7 @@ public class WatcherDirectory {
 
 		System.out.println("AutoPrint watching " + uri);
 		while ((key = watchService.take()) != null) {
-			System.err.println("change");
 			for (WatchEvent<?> event : key.pollEvents()) {
-				System.out.println("Event kind:" + event.kind() + ". File affected: " + event.context() + ".");
-
 				if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
 					print.exec(String.format("%s/%s", uri, event.context()));
 				}
