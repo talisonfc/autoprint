@@ -20,9 +20,10 @@ public class Print {
 
 	public void exec(String uri) {
 		System.out.println("print " + uri);
-		String content = FileHandler.read(uri);
+		//String content = FileHandler.read(uri);
 		
 		try {
+			//Thread.sleep(5000);
 			fromComandLine(uri);
 			FileHandler.remove(uri);
 		} catch (IOException e) {

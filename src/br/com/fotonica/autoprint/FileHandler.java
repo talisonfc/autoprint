@@ -31,6 +31,12 @@ public class FileHandler {
 				content += strCurrentLine;
 			}
 		} catch (IOException e) {
+			/*try {
+				Thread.sleep(2000);
+				return read(uri);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}*/
 			e.printStackTrace();
 		} finally {
 			try {
