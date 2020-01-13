@@ -16,9 +16,9 @@ public class SetupApplication {
 	static JFrame f;
 
 	public static void main(String[] args) {
-
 		crateSettingFolder();
 		copyExecutable();
+		copyStartup();
 		
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -27,10 +27,10 @@ public class SetupApplication {
 
 		if (result == JFileChooser.APPROVE_OPTION) {
 			File file = fileChooser.getSelectedFile();
-			System.out.println(file.getAbsolutePath());
 			saveAbsolutePath(file.getAbsolutePath());
 		}
-
+		
+		StartupApplication.main(args);
 	}
 
 	public static void saveAbsolutePath(String absolutePath) {
@@ -56,7 +56,19 @@ public class SetupApplication {
 	public static void copyExecutable() {
 		String root = new File("").getAbsolutePath();
 		File origin = new File(root + "/autoprint.jar");
-		File target = new File(Variables.fileConfigURI + "/autoprint/autoprint.jar");
+		File target = new File(Variables.fileConfigURI + "/autoprint.jar");
+
+		try {
+			Files.copy(origin.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void copyStartup() {
+		String root = new File("").getAbsolutePath();
+		File origin = new File(root + "/autoprint-startup.exe");
+		File target = new File(Variables.startupWindowsFolderURI + "/autoprint-startup.exe");
 
 		try {
 			Files.copy(origin.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
