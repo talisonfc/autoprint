@@ -48,10 +48,6 @@ public class WatcherDirectory {
 					String filename = String.format("%s/%s", uri, event.context());
 					addPlotRegister(filename);
 					
-					for(Map.Entry<String, Integer> entry: countPlot.entrySet()) {
-						System.out.println(String.format("%s %d", entry.getKey(), entry.getValue()));
-					}
-					
 					if(countPlot.get(filename)==1) {
 						print.exec(String.format("%s/%s", uri, event.context()));
 					}

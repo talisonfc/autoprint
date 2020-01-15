@@ -1,6 +1,5 @@
 package br.com.fotonica.autoprint.setup;
 
-import java.awt.Frame;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import br.com.fotonica.autoprint.Variables;
@@ -16,12 +14,12 @@ import br.com.fotonica.autoprint.Variables;
 public class SetupApplication {
 
 	public static void main(String[] args) {
-		Object[] options = {"Iniciar InstalaÃ§Ã£o"};
+		Object[] options = {"Iniciar Instalação"};
 		
 		JOptionPane jop = new JOptionPane();
 
-		int dialog = JOptionPane.showOptionDialog(jop, "AutoPrint Setup - Aplicativo de impressÃ£o automatica "
-				+ "\nFotonica TI LDTA [Engenharia de ComputaÃ§Ã£o] "
+		int dialog = JOptionPane.showOptionDialog(jop, "AutoPrint Setup - Aplicativo de impressão automática "
+				+ "\nFotonica TI LDTA [Engenharia de Computação] "
 				+ "\nTalison F. Costa - E-mail: tfccomputation@gmail.com - GitHub: github.com/talisonfc"
 				+ "\nhttps://github.com/talisonfc/autoprint/blob/master/AutoPrint.rar", 
 				"AutoPrintSetup", 
@@ -41,12 +39,21 @@ public class SetupApplication {
 				copyExecutable();
 				copyStartup();
 				saveAbsolutePath(file.getAbsolutePath());
+				
+				JOptionPane.showMessageDialog(jop, "AutoPrint instalado com sucesso"
+						+ "\nFotonica TI LDTA [Engenharia de Computação] "
+						+ "\nTalison F. Costa - E-mail: tfccomputation@gmail.com - GitHub: github.com/talisonfc"
+						+ "\nhttps://github.com/talisonfc/autoprint/blob/master/AutoPrint.rar");
 			}
 			
 			StartupApplication.main(args);	
 			
 			jop.repaint();
 		}
+		else {
+			JOptionPane.showMessageDialog(jop, "Instalação interrompida - AutoPrint", "AutoPrintSetup", JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 
 	public static void saveAbsolutePath(String absolutePath) {
