@@ -1,5 +1,6 @@
 package br.com.fotonica.autoprint.setup;
 
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,29 +9,44 @@ import java.nio.file.StandardCopyOption;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import br.com.fotonica.autoprint.Variables;
 
 public class SetupApplication {
 
-	static JFrame f;
-
 	public static void main(String[] args) {
-		crateSettingFolder();
-		copyExecutable();
-		copyStartup();
+		Object[] options = {"Iniciar Instalação"};
 		
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fileChooser.setDialogTitle("Escolher diretorio de arquivos .txt");
-		int result = fileChooser.showOpenDialog(null);
+		JOptionPane jop = new JOptionPane();
 
-		if (result == JFileChooser.APPROVE_OPTION) {
-			File file = fileChooser.getSelectedFile();
-			saveAbsolutePath(file.getAbsolutePath());
+		int dialog = JOptionPane.showOptionDialog(jop, "AutoPrint Setup - Aplicativo de impressão automatica "
+				+ "\nFotonica TI LDTA [Engenharia de Computação] "
+				+ "\nTalison F. Costa - E-mail: tfccomputation@gmail.com - GitHub: github.com/talisonfc"
+				+ "\nhttps://github.com/talisonfc/autoprint/blob/master/AutoPrint.rar", 
+				"AutoPrintSetup", 
+				JOptionPane.PLAIN_MESSAGE, 2, null, options, null);
+
+		if(dialog != -1) {
+			
+			JFileChooser fileChooser = new JFileChooser();
+			jop.add(fileChooser);
+			fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			fileChooser.setDialogTitle("Escolher diretorio de arquivos .txt");
+			int result = fileChooser.showOpenDialog(null);
+	
+			if (result == JFileChooser.APPROVE_OPTION) {
+				File file = fileChooser.getSelectedFile();
+				crateSettingFolder();
+				copyExecutable();
+				copyStartup();
+				saveAbsolutePath(file.getAbsolutePath());
+			}
+			
+			StartupApplication.main(args);	
+			
+			jop.repaint();
 		}
-		
-		StartupApplication.main(args);
 	}
 
 	public static void saveAbsolutePath(String absolutePath) {
